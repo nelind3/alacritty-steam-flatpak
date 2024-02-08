@@ -1,0 +1,43 @@
+{
+    "id": "com.valvesoftware.Steam.Utility.Alacritty",
+    "default-branch": "stable",
+    "runtime": "com.valvesoftware.Steam",
+    "runtime-version": "stable",
+    "sdk": "org.freedesktop.Sdk//22.08",
+    "sdk-extensions": [
+        "org.freedesktop.Sdk.Extension.rust-stable"
+    ],
+    "build-extension": true,
+    "appstream-compose": false,
+    "build-options": {
+        "prefix": "/app/utils/Alacritty",
+        "prepend-path": "/app/utils/Alacritty/bin"
+    },
+    "modules": [
+        {
+            "name": "alacritty",
+            "buildsystem": "simple",
+            "build-options": {
+                "append-path" : "/usr/lib/sdk/rust-stable/bin",
+                "env": {
+                    "CARGO_HOME": "/run/build/alacritty/cargo"
+                }
+            },
+            "build-commands": [
+                "ls",
+                "cargo --offline fetch --manifest-path Cargo.toml --verbose",
+                "cargo --offline build --release --verbose",
+                "install -Dm755 ./target/release/alacritty -t /app/utils/Alacritty/bin/"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "archive-type": "zip",
+                    "url": "https://github.com/alacritty/alacritty/archive/refs/tags/v0.13.1.zip",
+                    "sha256": "fbb02b560c7b6d21f0dc8c27dc108e5ccf3976e67dd49a466abc9d4e3280b251"
+                },
+                "generated-sources.json"
+            ]
+        }
+    ]
+}

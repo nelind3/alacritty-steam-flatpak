@@ -1,0 +1,8 @@
+#!/bin/bash
+cd alacritty
+git pull
+git checkout v0.13.1
+cd ..
+./flatpak-cargo-generator ./alacritty/Cargo.lock
+
+flatpak run org.flatpak.Builder --force-clean --install --user build-dir com.valvesoftware.Steam.Utility.Alacritty.json
