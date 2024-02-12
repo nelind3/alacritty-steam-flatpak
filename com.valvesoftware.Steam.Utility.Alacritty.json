@@ -24,17 +24,14 @@
                 }
             },
             "build-commands": [
-                "ls",
                 "cargo --offline fetch --manifest-path Cargo.toml --verbose",
                 "cargo --offline build --release --verbose",
                 "install -Dm755 ./target/release/alacritty -t /app/utils/Alacritty/bin/"
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "archive-type": "zip",
-                    "url": "https://github.com/alacritty/alacritty/archive/refs/tags/v0.13.1.zip",
-                    "sha256": "fbb02b560c7b6d21f0dc8c27dc108e5ccf3976e67dd49a466abc9d4e3280b251"
+                    "type": "dir",
+                    "path": "alacritty"
                 },
                 "generated-sources.json"
             ]
